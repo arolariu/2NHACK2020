@@ -5,6 +5,8 @@ import wikipedia #pip install wikipedia
 import webbrowser
 import os
 import smtplib
+import requests
+import wolframalpha
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
@@ -57,8 +59,8 @@ def sendEmail(to, content):
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.ehlo()
     server.starttls()
-    server.login('youremail@gmail.com', 'your-password')
-    server.sendmail('youremail@gmail.com', to, content)
+    server.login('birligeacosmin@gmail.com', 'morisette1')
+    server.sendmail('birligeacosmin@gmail.com', to, content)
     server.close()
 
 if __name__ == "__main__":
@@ -76,48 +78,64 @@ if __name__ == "__main__":
             print(results)
             speak(results)
 
-        elif 'open youtube' in query:
+        elif 'youtube' in query:
             webbrowser.open("youtube.com")
 
 
-        elif 'open google' in query:
+        elif 'google' in query:
             webbrowser.open("google.com")
 
-        elif 'open stackoverflow' in query:
+        elif 'plagiat' in query:
             webbrowser.open("stackoverflow.com")   
-        elif 'open reddit' in query:
+        elif 'ceva' in query:
             webbrowser.open("reddit.com")
-        elif 'open open website' in query:
-            webbrowser.open("stackoverflow.com")
+        elif 'proiect' in query:
+            webbrowser.open("https://github.com/arolariu/2NHACK2020")
+        elif 'vremea' in query:
+            webbrowser.open("http://www.meteoromania.ro/")
+
+        elif 'glumă' in query:
+            res = requests.get(
+                'https://icanhazdadjoke.com/',
+                headers={"Accept": "application/json"}
+            )
+            if res.status_code == requests.codes.ok:
+                speak(str(res.json()['joke']))
+            else:
+                speak('oops!I ran out of jokes')
 
         elif 'spotify' in query:
             webbrowser.open("spotify.com")
 
-        elif 'play music' in query:
+        elif 'muzică' in query:
             music_dir = 'C:\\MUZICA'
 
             songs = os.listdir(music_dir)
             print(songs)    
             os.startfile(os.path.join(music_dir, songs[0]))
 
-        elif 'the time' in query:
+        elif 'ceasul' in query:
             strTime = datetime.datetime.now().strftime("%H:%M:%S")    
             speak(f"Sir, the time is {strTime}")
 
-        elif 'open baby' in query:
+        elif 'fila' in query:
             codePath = "C:\\Users\\Cosmin\\PycharmProjects\\pythonProject1\\josh.py"
+            speak("Felicitari, ai deschis fisierul")
+
+
+
 
 
             os.startfile(codePath)
 
-        elif 'email to harry' in query:
+        elif 'mesaj' in query:
             try:
-                speak("What should I say?")
+                speak("Ce sa ii scriu")
                 content = takeCommand()
-                to = "harryyourEmail@gmail.com"    
+                to = "birligeacosmin@yahoo.com"
                 sendEmail(to, content)
                 speak("Email has been sent!")
             except Exception as e:
                 print(e)
-                speak("Sorry my friend harry bhai. I am not able to send this email")
+                speak("E BUN")
 
