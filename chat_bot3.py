@@ -15,25 +15,22 @@ engine.setProperty('voice', voices[0].id)
 
 
 
-def speak(audio):
+def spune(audio):
     engine.say(audio,)
     engine.runAndWait()
-
-
-
 
 def wishMe():
     hour = int(datetime.datetime.now().hour)
     if hour>=0 and hour<12:
-        speak("Good Morning!")
+        spune("Good Morning!")
 
     elif hour>=12 and hour<18:
-        speak("Good Afternoon!")   
+        spune("Good Afternoon!")
 
     else:
-        speak("Good Evening!")  
+        spune("Good Evening!")
 
-    speak("Sunt Mihai")
+    spune("I am Mircea")
 
 def takeCommand():
     #It takes microphone input from the user and returns string output
@@ -71,71 +68,68 @@ if __name__ == "__main__":
 
         # Logic for executing tasks based on query
         if 'wikipedia' in query:
-            speak('Searching Wikipedia...')
+            spune('Searching Wikipedia...')
             query = query.replace("wikipedia", "")
             results = wikipedia.summary(query, sentences=2)
-            speak("According to Wikipedia")
+            spune("According to Wikipedia")
             print(results)
-            speak(results)
+            spune(results)
 
-        elif 'youtube' in query:
+        if 'youtube' in query:
             webbrowser.open("youtube.com")
 
 
-        elif 'google' in query:
+        if 'google' in query:
             webbrowser.open("google.com")
 
-        elif 'plagiat' in query:
+        if 'plagiat' in query:
             webbrowser.open("stackoverflow.com")   
-        elif 'ceva' in query:
+        if 'ceva' in query:
             webbrowser.open("reddit.com")
-        elif 'proiect' in query:
+        if 'proiect' in query:
             webbrowser.open("https://github.com/arolariu/2NHACK2020")
-        elif 'vremea' in query:
+        if 'meteo' in query:
             webbrowser.open("http://www.meteoromania.ro/")
 
-        elif 'glumă' in query:
+        if 'spotify' in query:
+            webbrowser.open("spotify.com")
+
+        if 'melodie'  in query:
+            music_dir = 'C:\\MUZICA'
+            songs = os.listdir(music_dir)
+            print(songs)
+            os.startfile(os.path.join(music_dir, songs[0]))
+        if 'ceasul' in query:
+            strTime = datetime.datetime.now().strftime("%H:%M:%S")
+            spune(f"Sir, the time is {strTime}")
+
+        if 'fila' in query:
+            codePath = "C:\\Users\\Cosmin\\PycharmProjects\\pythonProject1\\josh.py"
+            spune("Felicitari, ai deschis fisierul")
+
+        elif 'mesaj' in query:
+            try:
+                spune("Ce sa ii scriu")
+                content = takeCommand()
+                to = "birligeacosmin@yahoo.com"
+                sendEmail(to, content)
+                spune("Email has been sent!")
+            except Exception as e:
+                print(e)
+                spune("E BUN")
+
+        if 'glumă'or 'gluma' in query:
             res = requests.get(
                 'https://icanhazdadjoke.com/',
                 headers={"Accept": "application/json"}
             )
             if res.status_code == requests.codes.ok:
-                speak(str(res.json()['joke']))
+                spune(str(res.json()['joke']))
             else:
-                speak('oops!I ran out of jokes')
-
-        elif 'spotify' in query:
-            webbrowser.open("spotify.com")
-
-        elif 'muzică' in query:
-            music_dir = 'C:\\MUZICA'
-
-            songs = os.listdir(music_dir)
-            print(songs)    
-            os.startfile(os.path.join(music_dir, songs[0]))
-
-        elif 'ceasul' in query:
-            strTime = datetime.datetime.now().strftime("%H:%M:%S")    
-            speak(f"Sir, the time is {strTime}")
-
-        elif 'fila' in query:
-            codePath = "C:\\Users\\Cosmin\\PycharmProjects\\pythonProject1\\josh.py"
-            speak("Felicitari, ai deschis fisierul")
-
-
-
+                spune('oops!I ran out of jokes')
 
 
             os.startfile(codePath)
 
-        elif 'mesaj' in query:
-            try:
-                speak("Ce sa ii scriu")
-                content = takeCommand()
-                to = "birligeacosmin@yahoo.com"
-                sendEmail(to, content)
-                speak("Email has been sent!")
-            except Exception as e:
-                print(e)
-                speak("E BUN")
+
 
