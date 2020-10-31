@@ -160,14 +160,12 @@ if __name__ == "__main__":
             finally:
                 query = ''
 
-
         elif query.count("youtube") >= 1:
-            search = SearchVideos(query, 1, "json", 3).links[0]
-            print("What video would you like to chose?")
-            spune("What video would you like to chose?")
-
+            search = SearchVideos(query, 1, "json", 1).links[0]
             webbrowser.open(search)
             query = ''
+
+
 
 
 
