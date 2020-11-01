@@ -6,7 +6,6 @@ import webbrowser
 import os
 from tkinter import *
 from youtubesearchpython import SearchVideos
-from googlesearch import search
 
 #INTERFATA GRAFICA:
 
@@ -191,47 +190,6 @@ voices = engine.getProperty('voices')
 engine.setProperty('voice', voices[0].id)
 
 
-
-
-
-
 if __name__ == "__main__":
     wishMe()
     app.mainloop()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
