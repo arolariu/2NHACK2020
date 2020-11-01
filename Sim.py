@@ -16,6 +16,7 @@ import wolframalpha
 from tkinter import *
 from tkinter import ttk
 from youtubesearchpython import SearchVideos
+import subprocess
 
 
 #print(search.result())
@@ -131,6 +132,9 @@ def sendEmail(to, content):
     server.sendmail('cosmin@gmail.com', to, content)
     server.close()
 
+
+
+
 if __name__ == "__main__":
     wishMe()
     while True:
@@ -150,7 +154,7 @@ if __name__ == "__main__":
                 load_progress()
                 results = wikipedia.summary(query, sentences=2)
                 spune("According to Wikipedia")
-                results = [i for i in results]
+                #results = [i for i in results]
                 results = results.replace('.', '.\n')
                 print(results)
                 spune(results)
@@ -160,94 +164,61 @@ if __name__ == "__main__":
             finally:
                 query = ''
 
-        elif query.count("youtube") >= 1:
+        if query.count("youtube") >= 1:
             search = SearchVideos(query, 1, "json", 1).links[0]
             webbrowser.open(search)
             query = ''
 
-
-
-
-
-        elif 'google' in query:
+        if 'google' in query:
             webbrowser.open("google.com")
             query = ''
 
-
-        elif 'muzica' in query:
-            webbrowser.open("https://www.youtube.com/results?search_query=")
-            query = ''
-
-
-        elif 'stack' in query:
+        if 'stack' in query:
             webbrowser.open("stackoverflow.com")
             query = ''
-        elif 'ceva' in query:
+        if 'redit' in query:
             webbrowser.open("reddit.com")
             query = ''
-        elif 'proiect' in query:
+        if 'proiect' in query:
             webbrowser.open("https://github.com/arolariu/2NHACK2020")
             query = ''
 
-        elif 'meteo' in query:
+        if 'meteo' in query:
             webbrowser.open("http://www.meteoromania.ro/")
             query = ''
 
-        elif 'spotify' in query:
+        if 'spotify' in query:
             webbrowser.open("spotify.com")
             query = ''
-        elif 'melodie'  in query:
+        if 'melodie'  in query:
             music_dir = 'C:\\MUZICA'
             songs = os.listdir(music_dir)
             print(songs)
             os.startfile(os.path.join(music_dir, songs[0]))
             query = ''
-        elif 'ceasul' in query:
+        if 'ceasul' in query:
             strTime = datetime.datetime.now().strftime("%H:%M:%S")
             spune(f"Sir, the time is {strTime}")
             query = ''
 
-        elif query.count("xl") >= 1:
+        if query.count("xl") >= 1 or query.count("excel")>=1:
             codePath = "C:\\Program Files\\Microsoft Office\\root\\Office16\\EXCEL.EXE"
             os.startfile(codePath)
             query = ''
 
-        elif query.count("prezentare") >= 1:
+        if query.count("prezentare") >= 1:
             codePath = "C:\\Program Files\\Microsoft Office\\root\\Office16\\POWERPNT.EXE"
             os.startfile(codePath)
             query = ''
 
-        elif 'lol' in query:
-            codePath = "C:\\Riot Games\\Riot Client"
+        if query.count("word") >= 1:
+            codePath = "C:\\Program Files\\Microsoft Office\\root\\Office16\\WINWORD.EXE"
             os.startfile(codePath)
             query = ''
 
 
 
-           # spune("Felicitari, ai deschis fisierul")
-
-        #elif 'mesaj' in query.count('mesaj') >= 1:
-         #   try:
-          #      spune("Ce sa ii scriu")
-           #     content = takeCommand()
-            #    to = "birligeacosmin@yahoo.com"
-             #   sendEmail(to, content)
-              #  spune("Email has been sent!")
-            #except Exception as e:
-             #   print(e)
-              #  spune("E BUN")
-
-       # if 'glumă'or 'gluma' in query:
-        #    res = requests.get(
-         #       'https://icanhazdadjoke.com/',
-          #      headers={"Accept": "application/json"}
-          #  )
-           # if res.status_code == requests.codes.ok:
-            #    spune(str(res.json()['joke']))
-            #else:
-             #   spune('oops!I ran out of jokes')
 
 
-            #os.startfile(codePath)
 
 
