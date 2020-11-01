@@ -169,8 +169,7 @@ def update(ind):
     app.after(100, update, ind)
 
 
-#etry = Entry(app)
-#etry.place(x=400,y=600)
+
 label = Label(app)
 label.pack()
 Button(master = app, text="Push to talk!", command = vorbit, width=10, height=3).place(x=400, y=820)
@@ -199,6 +198,32 @@ engine.setProperty('voice', voices[0].id)
 if __name__ == "__main__":
     wishMe()
     app.mainloop()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
